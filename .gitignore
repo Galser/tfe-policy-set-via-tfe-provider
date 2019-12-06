@@ -1,0 +1,5 @@
+.terraform
+terraform.tfstate
+terraform.tfstate*
+site_ssl_*.pem
+.DS_Store
