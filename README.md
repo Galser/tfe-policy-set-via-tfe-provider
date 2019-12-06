@@ -5,8 +5,8 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
 
 # Instructions (for Terraform CLI 0.12 ) : 
 
-- Create auth token in teh VCS of your choice, I am using GitHub fro example : https://github.com/settings/tokens
-- Export it as environment variable by executing :
+- Create auth token in teh VCS of your choice, I am using GitHub : https://github.com/settings/tokens
+- Export it as environment variable :
   ```export TF_VAR_github_oauth_token=YOUR_TOKEN```
 - Create [variables.tf](variables.tf) with the content :
   ```terraform
@@ -14,9 +14,21 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
     default = "FQDN of your TFE instance here"
   }
 
+  variable "tfe_org" {
+    type = string
+    description = "tfe organization"
+    default = "acme5"
+  }
+  
   variable "github_oauth_token" {
     type = string
   }
+  
+  variable "github_repo" {
+    type = string
+    default = "Galser/tfe-policy-fork-test" # <<-- your Sentinel policy set repo
+  }
+  
   ```
 - Create following [main.tf](main.tf) : 
   ```terraform
@@ -25,7 +37,7 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
   }
 
   resource "tfe_oauth_client" "test" {
-    organization     = "acme5" # TFE organitzation, not the GiutHub's one
+    organization     = "${var.tfe_org}" # TFE organization
     api_url          = "https://api.github.com"
     http_url         = "https://github.com"
     oauth_token      = "${var.github_oauth_token}"
@@ -36,10 +48,10 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
     name         = "global-policy-set"
     description  = "A brand new policy set"
     global       = true
-    organization = "acme5" # again, TFE organization
+    organization = "${var.tfe_org}" # TFE organization
 
     vcs_repo {
-      identifier         = "Galser/tfe-policy-fork-test" # <<-- your Sentinel policy set repo
+      identifier         = "${var.github_repo}"
       branch             = "master"
       ingress_submodules = false
       oauth_token_id     = "${tfe_oauth_client.test.oauth_token_id}"
