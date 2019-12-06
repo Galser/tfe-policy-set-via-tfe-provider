@@ -18,7 +18,7 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
     type = string
   }
   ```
-- Create following [main.tf](main.tf) ) : 
+- Create following [main.tf](main.tf) : 
   ```terraform
   provider "tfe" {
     hostname = "${var.tfe_hostname}"
@@ -37,7 +37,6 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
     description  = "A brand new policy set"
     global       = true
     organization = "acme5" # again, TFE organization
-    #  policies_path          = "policies/globalk" -<< this cna be subpath in repo
 
     vcs_repo {
       identifier         = "Galser/tfe-policy-fork-test" # <<-- your Sentinel policy set repo
