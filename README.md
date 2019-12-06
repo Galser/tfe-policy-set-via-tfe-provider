@@ -76,5 +76,14 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
   ...
   ```
  
-- Enjoy! Now you should have Policy Set named **"global-policy-set"** in your TFE
+- Enjoy! Now you should have Policy Set named **"global-policy-set"** in your TFE as per screenshot below : 
+
+![Policies Set page screenshot](screenshots/policy-set-page.png)
+
+And no individually managed polices at all : 
+
+![No individual policies](screenshots/no-individual-policies.png)
+
+
+Thank you.
 
