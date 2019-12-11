@@ -5,7 +5,7 @@ Example of how to set up `sentinel policy set` in Terrafrom Enterprise via [tfe 
 
 # Instructions (for Terraform CLI 0.12 ) : 
 
-- Create auth token in teh VCS of your choice, I am using GitHub : https://github.com/settings/tokens
+- Create auth token in the VCS of your choice, I am using GitHub : https://github.com/settings/tokens
 - Export it as environment variable :
   ```export TF_VAR_github_oauth_token=YOUR_TOKEN```
 - Create [variables.tf](variables.tf) with the content :
@@ -99,3 +99,6 @@ And no individually managed polices at all :
 
 Thank you.
 
+
+# TODO 
+- [ ] convert to module
